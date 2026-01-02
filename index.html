@@ -11,7 +11,7 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #eef6ff, #ffffff);
+  background: linear-gradient(to bottom, #fefefe, #eef6ff);
   color: #1f2937;
 }
 
@@ -24,7 +24,7 @@ header {
 header h1 {
   font-size: 3rem;
   margin: 0;
-  color: #1e3a8a; /* elegant navy */
+  color: #1e3a8a;
 }
 
 header p {
@@ -35,7 +35,7 @@ header p {
 
 /* Hero Gradient */
 .hero {
-  background: linear-gradient(135deg, #dbeafe, #fef3c7); /* soft, subtle gradient */
+  background: linear-gradient(135deg, #dbeafe, #fef3c7);
   height: 250px;
   border-radius: 26px;
   margin: 30px auto;
@@ -49,7 +49,7 @@ header p {
 .hero h2 {
   font-size: 2rem;
   font-weight: 600;
-  color: #1e3a8a; /* same navy color, clean */
+  color: #1e3a8a;
 }
 
 /* Container */
@@ -146,6 +146,47 @@ button:hover {
   background: #000;
 }
 
+/* Comments */
+.comment-section {
+  margin-top: 20px;
+  border-top: 1px solid #c7d2fe;
+  padding-top: 15px;
+}
+
+.comment-box {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.comment-box input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 16px;
+  border: 1px solid #c7d2fe;
+}
+
+.comment-box button {
+  margin-left: 8px;
+  padding: 8px 12px;
+  border-radius: 16px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+}
+
+.comment-box button:hover {
+  background: #4f46e5;
+}
+
+.comment {
+  background: #f0f9ff;
+  border-radius: 16px;
+  padding: 8px 12px;
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -168,21 +209,18 @@ footer {
   <p>Colorful ideas, shared freely ✨</p>
 </header>
 
-<!-- Hero Gradient -->
 <div class="hero">
   <h2>Share your reflections</h2>
 </div>
 
 <div class="container">
 
-  <!-- Add Section -->
   <div class="add-box">
     <h2>Write a thought ✍️</h2>
     <textarea id="input" placeholder="Share something meaningful..."></textarea>
     <button onclick="addPost()">Publish</button>
   </div>
 
-  <!-- Posts -->
   <div id="posts"></div>
 
 </div>
@@ -207,6 +245,13 @@ function addPost() {
       <span>Just now</span>
       <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
     </div>
+    <div class="comment-section">
+      <div class="comments"></div>
+      <div class="comment-box">
+        <input type="text" placeholder="Add a comment">
+        <button onclick="addComment(this)">Comment</button>
+      </div>
+    </div>
   `;
 
   document.getElementById("posts").prepend(post);
@@ -219,6 +264,20 @@ function addPost() {
 function like(el) {
   const count = el.querySelector("b");
   count.textContent = Number(count.textContent) + 1;
+}
+
+function addComment(button) {
+  const input = button.previousElementSibling;
+  const text = input.value.trim();
+  if (!text) return;
+
+  const commentsDiv = button.closest(".comment-section").querySelector(".comments");
+  const comment = document.createElement("div");
+  comment.className = "comment";
+  comment.textContent = text;
+  commentsDiv.appendChild(comment);
+
+  input.value = "";
 }
 </script>
 
