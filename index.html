@@ -40,48 +40,73 @@ header p {
   padding: 20px;
 }
 
-/* Blog card */
-.post {
+/* Add section */
+.add-box {
   background: #ffffff;
   border-radius: 20px;
-  padding: 32px;
-  margin-bottom: 35px;
+  padding: 28px;
+  margin-bottom: 40px;
   box-shadow: 0 18px 40px rgba(0,0,0,0.08);
-  animation: fadeIn 0.8s ease;
 }
 
-.post h2 {
+.add-box h2 {
   margin-top: 0;
   color: #0b3c5d;
 }
 
-.post p {
-  line-height: 1.7;
-  font-size: 1rem;
-  color: #34495e;
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #cfe3ff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  resize: vertical;
 }
 
-/* Like + view row */
-.meta {
-  margin-top: 22px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: #4a6fa5;
+textarea:focus {
+  outline: none;
+  border-color: #5fa8ff;
 }
 
 button {
+  margin-top: 14px;
   background: #5fa8ff;
   border: none;
   color: white;
-  padding: 10px 16px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 22px;
   cursor: pointer;
   font-weight: 600;
 }
 
 button:hover {
   background: #4a97f5;
+}
+
+/* Blog post */
+.post {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  animation: fadeIn 0.6s ease;
+}
+
+.post p {
+  line-height: 1.7;
+  color: #34495e;
+}
+
+/* Likes + views */
+.meta {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #4a6fa5;
 }
 
 /* Footer */
@@ -109,19 +134,15 @@ footer {
 
 <div class="container">
 
-  <!-- BLOG POST -->
-  <div class="post">
-    <h2>Learning to Slow Down</h2>
-    <p>
-      Life doesn’t always need speed. Sometimes clarity arrives when we pause,
-      breathe, and allow ourselves to exist without pressure.
-    </p>
-
-    <div class="meta">
-      <span>👀 Views: <b id="views">0</b></span>
-      <button onclick="like()">❤️ Like <span id="likes">0</span></button>
-    </div>
+  <!-- ADD SECTION -->
+  <div class="add-box">
+    <h2>Write a Thought</h2>
+    <textarea id="textInput" placeholder="Write something you want to share with the world..."></textarea>
+    <button onclick="addPost()">Publish</button>
   </div>
+
+  <!-- POSTS -->
+  <div id="posts"></div>
 
 </div>
 
@@ -130,20 +151,38 @@ footer {
 </footer>
 
 <script>
-// Simple views counter
+// Views counter
 let views = localStorage.getItem("views") || 0;
 views++;
 localStorage.setItem("views", views);
-document.getElementById("views").innerText = views;
 
-// Simple likes
+// Likes
 let likes = localStorage.getItem("likes") || 0;
-document.getElementById("likes").innerText = likes;
 
-function like() {
-  likes++;
-  localStorage.setItem("likes", likes);
-  document.getElementById("likes").innerText = likes;
+// Add post
+function addPost() {
+  const input = document.getElementById("textInput");
+  const text = input.value.trim();
+  if (!text) return;
+
+  const post = document.createElement("div");
+  post.className = "post";
+  post.innerHTML = `
+    <p>${text}</p>
+    <div class="meta">
+      <span>👀 Views: ${views}</span>
+      <button onclick="like(this)">❤️ Like <span>0</span></button>
+    </div>
+  `;
+
+  document.getElementById("posts").prepend(post);
+  input.value = "";
+}
+
+// Like button
+function like(btn) {
+  const span = btn.querySelector("span");
+  span.textContent = Number(span.textContent) + 1;
 }
 </script>
 
