@@ -1,290 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aksh – Reflections & Insight</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(120% 140% at 20% -10%, #eef0f3 0%, #fafafa 40%, #f1f2f4 100%);
-      color: #0f1115;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aksh – Reflections & Insight</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Reset & Body */
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family:'Roboto', sans-serif;
+  background:#f9fafb;
+  color:#1e293b;
+  line-height:1.6;
+}
 
-    header {
-      text-align: center;
-      padding: 48px 16px 28px;
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-    }
+/* Header */
+header {
+  text-align:center;
+  padding:50px 20px 20px;
+  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FsbSUyMGJhY2tncm91bmR8ZW58MHx8MHx8&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center/cover;
+  border-radius:0 0 25px 25px;
+}
+header h1 {
+  font-family:'Playfair Display', serif;
+  font-size:3rem;
+  color:white;
+  text-shadow:1px 2px 8px rgba(0,0,0,0.3);
+}
+header p {
+  color:white;
+  margin-top:8px;
+  font-style:italic;
+  text-shadow:1px 2px 8px rgba(0,0,0,0.3);
+}
 
-    h1 {
-      font-size: 38px;
-      margin: 0 0 6px;
-      color: #111827;
-      letter-spacing: -0.5px;
-      font-weight: 700;
-    }
+/* Hero Section */
+.hero {
+  background:linear-gradient(120deg, #c8e6f5, #f9f4ff);
+  border-radius:20px;
+  margin:20px auto;
+  padding:30px;
+  max-width:800px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  transition:0.3s;
+}
+.hero h2 {
+  font-family:'Playfair Display', serif;
+  font-size:1.9rem;
+  color:#1e40af;
+}
 
-    .tagline {
-      font-weight: 400;
-      color: #6b7280;
-    }
+/* Container */
+.container { max-width:800px; margin:auto; padding:20px; }
 
-    .hero {
-      max-width: 1100px;
-      margin: 32px auto 0;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 26px 48px rgba(0,0,0,.10);
-      background: linear-gradient(135deg, #ffffff 0%, #f7f9fb 100%);
-      border: 1px solid rgba(210,214,220,.6);
-    }
+/* Admin Panel */
+.admin-panel { text-align:center; margin-bottom:30px; display:none; }
+.admin-panel textarea {
+  width:80%; padding:12px; border-radius:14px; border:1px solid #cbd5e1; font-size:1rem; resize:none;
+}
+.admin-panel button {
+  margin-top:10px;
+  padding:10px 18px;
+  border:none;
+  border-radius:14px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  font-size:1rem;
+}
+.admin-panel button:hover { background:#1d4ed8; }
 
-    .hero img {
-      width: 100%;
-      height: 340px;
-      object-fit: cover;
-      display: block;
-    }
+/* Posts */
+.post {
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:25px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.05);
+  transition:0.3s;
+  opacity:0;
+  transform:translateY(20px);
+}
+.post.show { opacity:1; transform:translateY(0); transition:0.5s ease; }
+.post p { font-size:1rem; }
 
-    .hero-text {
-      padding: 22px 28px 26px;
-      text-align: center;
-      background: #ffffff;
-    }
+/* Pastel colors */
+.color-1 { background:#fce7f3; } /* soft pink */
+.color-2 { background:#e0f2fe; } /* soft blue */
+.color-3 { background:#dcfce7; } /* soft green */
+.color-4 { background:#ede9fe; } /* soft purple */
+.color-5 { background:#fff9c4; } /* soft yellow */
 
-    .hero-text h2 {
-      margin: 0;
-      font-size: 26px;
-      color: #111827;
-      font-weight: 600;
-    }
+/* Meta & Likes */
+.meta {
+  margin-top:12px;
+  display:flex;
+  justify-content:space-between;
+  font-size:0.9rem;
+  color:#475569;
+}
+.like-btn {
+  background:#1e3a8a;
+  color:white;
+  padding:6px 14px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:0.9rem;
+}
+.like-btn:hover { background:#1d4ed8; }
 
-    .section {
-      max-width: 880px;
-      margin: 32px auto 48px;
-      padding: 0 16px;
-    }
+/* Comments */
+.comment-section { margin-top:12px; border-top:1px solid #cbd5e1; padding-top:12px; }
+.comment-box { display:flex; margin-bottom:8px; }
+.comment-box input {
+  flex:1;
+  padding:8px 12px;
+  border-radius:16px;
+  border:1px solid #cbd5e1;
+}
+.comment-box button {
+  margin-left:6px;
+  padding:8px 14px;
+  border:none;
+  border-radius:16px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+}
+.comment-box button:hover { background:#1d4ed8; }
+.comment {
+  background:#f0f9ff;
+  border-radius:14px;
+  padding:6px 10px;
+  margin-top:4px;
+  font-size:0.9rem;
+}
 
-    .card {
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(14px) saturate(140%);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
-      border-radius: 18px;
-      padding: 22px 22px 18px;
-      box-shadow: 0 22px 40px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.8);
-      border: 1px solid rgba(200,205,212,.55);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 28px 46px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.9);
-    }
-
-    .quote {
-      font-size: 18px;
-      color: #111827;
-      line-height: 1.6;
-    }
-
-    .meta {
-      margin: 10px 0 16px;
-      font-size: 13px;
-      color: #6b7280;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .like-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #f3f4f6;
-      color: #374151;
-      border: 1px solid #d1d5db;
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background .12s ease;
-    }
-
-    .like-btn:hover {
-      background: #e5e7eb;
-    }
-
-    .comment-box {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .comment-box input {
-      flex: 1;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      padding: 10px 14px;
-      outline: none;
-      background: #ffffff;
-    }
-
-    .comment-box input:focus {
-      border-color: #9ca3af;
-      box-shadow: 0 0 0 2px rgba(156,163,175,.25);
-    }
-
-    .comment-btn {
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      padding: 10px 16px;
-      font-weight: 600;
-      cursor: pointer;
-      background: #ffffff;
-      color: #111827;
-      transition: background .12s ease;
-    }
-
-    .comment-btn:hover {
-      background: #f3f4f6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 32px 16px 40px;
-      color: #6b7280;
-      font-size: 14px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 22px;
-      margin: 42px auto 16px;
-      max-width: 1120px;
-      padding: 0 8px;
-    }
-
-    .gallery-item {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      background: rgba(255,255,255,.75);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(210,214,220,.6);
-      box-shadow: 0 20px 38px rgba(0,0,0,.10);
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-3px) scale(1.01);
-      box-shadow: 0 26px 48px rgba(0,0,0,.14);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      aspect-ratio: 4 / 3;
-      transform: scale(1.01);
-      transition: transform .35s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.04);
-    }
-  </style>
+/* Footer */
+footer {
+  text-align:center;
+  padding:25px 10px;
+  color:#1e3a8a;
+  font-size:0.95rem;
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Aksh – Reflections & Insight</h1>
-    <p class="tagline">Where quiet thoughts become something bigger</p>
-  </header>
 
-  <div class="hero">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200" alt="Calm sunrise landscape" />
-    <div class="hero-text">
-      <h2>Reflect. Read. Connect.</h2>
+<header>
+  <h1>Aksh – Reflections & Insight</h1>
+  <p>Calm thoughts, peaceful mind</p>
+</header>
+
+<div class="hero">
+  <h2>Reflect. Read. Connect.</h2>
+</div>
+
+<div class="container">
+
+  <!-- Admin Panel -->
+  <div class="admin-panel" id="adminPanel">
+    <textarea id="newThought" rows="3" placeholder="Write your reflection here..."></textarea><br>
+    <button onclick="addPost()">Add Thought</button>
+  </div>
+
+  <!-- Posts -->
+  <div id="posts">
+    <div class="post color-1 show">
+      <p>Sometimes the smallest step in the right direction is the biggest step of your life.</p>
+      <div class="meta">
+        <span>Just shared</span>
+        <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
+      </div>
+      <div class="comment-section">
+        <div class="comments"></div>
+        <div class="comment-box">
+          <input type="text" placeholder="Add a comment">
+          <button onclick="addComment(this)">Comment</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <section class="section">
-    <div class="card">
-      <p class="quote">Sometimes the smallest step in the right direction ends up being the biggest step of your life.</p>
-      <p class="meta">Just shared</p>
+</div>
 
-      <div class="actions">
-        <button class="like-btn" id="likeBtn">❤️ Like <span id="likeCount">0</span></button>
-      </div>
+<footer>
+  © 2026 Aksh
+</footer>
 
+<script>
+// Show admin panel only if URL contains ?admin=1
+if(window.location.search.includes("admin=1")) {
+  document.getElementById("adminPanel").style.display = "block";
+}
+
+// Like posts
+function like(el) {
+  const count = el.querySelector("b");
+  count.textContent = Number(count.textContent)+1;
+}
+
+// Add comment
+function addComment(button) {
+  const input = button.previousElementSibling;
+  const text = input.value.trim();
+  if(!text) return;
+  const commentsDiv = button.closest(".comment-section").querySelector(".comments");
+  const comment = document.createElement("div");
+  comment.className="comment";
+  comment.textContent = text;
+  commentsDiv.appendChild(comment);
+  input.value="";
+}
+
+// Add post with random pastel color
+function addPost() {
+  const text = document.getElementById("newThought").value.trim();
+  if(!text) return;
+  const postsDiv = document.getElementById("posts");
+  const postDiv = document.createElement("div");
+  const colorNum = Math.floor(Math.random()*5)+1;
+  postDiv.className="post color-"+colorNum;
+  postDiv.innerHTML = `
+    <p>${text}</p>
+    <div class="meta">
+      <span>Just shared</span>
+      <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
+    </div>
+    <div class="comment-section">
+      <div class="comments"></div>
       <div class="comment-box">
-        <input type="text" id="commentInput" placeholder="Add a comment" />
-        <button class="comment-btn" id="commentBtn">Comment</button>
+        <input type="text" placeholder="Add a comment">
+        <button onclick="addComment(this)">Comment</button>
       </div>
-      <ul id="commentsList" style="list-style:none; padding: 8px 4px 0; margin:0;"></ul>
     </div>
-  </section>
+  `;
+  postsDiv.prepend(postDiv);
+  // Animate
+  setTimeout(()=>{ postDiv.classList.add("show"); },50);
+  document.getElementById("newThought").value="";
+}
+</script>
 
-  <section class="gallery">
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1499084732479-de2c02d45fc4?q=80&w=900" alt="Minimal architecture light shadows" />
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=900" alt="Calm mountains and mist" />
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1529260830199-42c24126f198?q=80&w=900" alt="Desk reflection laptop aesthetic" />
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1531327431456-837da4b1d316?q=80&w=900" alt="City lights modern skyline" />
-    </div>
-  </section>
-
-  <footer>
-    © 2026 Aksh
-  </footer>
-
-  <script>
-    const likeBtn = document.getElementById('likeBtn');
-    const likeCount = document.getElementById('likeCount');
-    let likes = 0;
-
-    likeBtn.addEventListener('click', () => {
-      likes++;
-      likeCount.textContent = likes;
-    });
-
-    const commentBtn = document.getElementById('commentBtn');
-    const commentInput = document.getElementById('commentInput');
-    const commentsList = document.getElementById('commentsList');
-
-    commentBtn.addEventListener('click', () => {
-      const text = commentInput.value.trim();
-      if (!text) return;
-
-      const li = document.createElement('li');
-      li.textContent = text;
-      li.style.padding = '10px 12px';
-      li.style.marginTop = '6px';
-      li.style.background = '#f1f5f9';
-      li.style.borderRadius = '14px';
-      li.style.border = '1px solid #e2e8f0';
-      commentsList.appendChild(li);
-
-      commentInput.value = '';
-    });
-  </script>
 </body>
 </html>
