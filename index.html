@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aksh's Reflection Journal</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-<style>
-/* --- General Body --- */
 body {
   font-family: 'Nunito', sans-serif;
   margin: 0; padding: 0;
-  background: #e6f7ff; /* very light sky blue */
-  color: #333;
+  background: #ffffff; /* pure white background for clean look */
+  color: #1a1a1a; /* dark gray text for readability */
   min-height: 100vh;
 }
 
-/* --- Header --- */
 header {
   text-align: center; padding: 40px 20px 20px 20px;
+  background: #f0f8ff; /* very light sky blue background */
+  border-bottom: 2px solid #a3d5ff; /* subtle blue border */
 }
 header h1 {
   margin: 0; font-size: 2.5em; color: #0d3b66; letter-spacing: 1px;
@@ -29,32 +21,24 @@ header p {
   margin-top: 10px; font-weight: bold; color: #0d3b66;
 }
 
-/* --- Main Grid --- */
 main {
   max-width: 950px; margin: 30px auto; padding: 0 20px;
   display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 25px;
 }
 
-/* --- Cards --- */
 .card {
   padding: 25px 20px; border-radius: 15px; background: #ffffff; /* white cards */
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   opacity: 0; transform: translateY(30px) scale(0.95);
   animation: fadeInUp 0.8s forwards;
   transition: transform 0.4s, box-shadow 0.4s, background 0.3s;
 }
 .card:hover {
   transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-  background: #cceeff; /* soft sky blue hover */
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+  background: #d0ebff; /* soft sky blue hover */
 }
 
-/* --- Animations --- */
-@keyframes fadeInUp {
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* --- Titles & Quotes --- */
 h2 { color: #0d3b66; margin-top: 0; font-size: 1.4em; }
 blockquote {
   font-style: italic; color: #205375;
@@ -62,10 +46,6 @@ blockquote {
   background: #f9faff; border-radius: 6px; margin: 8px 0;
 }
 
-/* --- New Reflection Input --- */
-#addReflection {
-  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;
-}
 #addReflection input {
   flex: 1 1 65%; padding: 12px 15px; border-radius: 10px;
   border: 1px solid #a3d5ff; font-size: 0.95em;
@@ -81,143 +61,19 @@ blockquote {
   transform: scale(1.05); background: #3a87c8;
 }
 
-/* --- Reflection List --- */
-#reflectionsList .card {
-  margin-top: 10px; animation: fadeInUp 0.6s forwards;
-}
-
-/* --- Likes Button --- */
 .likeBtn {
   cursor: pointer; color: #559edc; font-weight: bold; margin-left: 10px;
 }
 .likeBtn:hover { color: #3a87c8; }
 
-/* --- Footer --- */
 footer {
   text-align: center; padding: 30px 20px; color: #0d3b66; font-weight: 600; margin-top: 30px;
 }
 
-/* --- Responsive --- */
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 @media(max-width:600px){
   #addReflection input,#addReflection button{flex:1 1 100%;}
 }
-</style>
-</head>
-<body>
-
-<header>
-  <h1>Aksh's Reflection Journal</h1>
-  <p>Write. Reflect. Grow. ✨</p>
-  <div id="visitorCount">Visitors: 0</div>
-</header>
-
-<main>
-  <div class="card perspective" data-id="quote1">
-    <h2>Quote of the Day</h2>
-    <blockquote>
-      "Happiness depends upon ourselves." – Aristotle
-      <span class="likeBtn" onclick="likeItem('quote1')">👍 <span id="likes-quote1">0</span></span>
-    </blockquote>
-  </div>
-
-  <div class="card thoughts" data-id="thoughts1">
-    <h2>My Thoughts</h2>
-    <p>
-      Notice the little joys around you: sunlight, a smile, or a quiet moment. They shape your day more than you think.
-      <span class="likeBtn" onclick="likeItem('thoughts1')">👍 <span id="likes-thoughts1">0</span></span>
-    </p>
-  </div>
-
-  <div class="card newReflection">
-    <h2>Add a New Reflection</h2>
-    <div id="addReflection">
-      <input type="text" id="newReflection" placeholder="Type your reflection here...">
-      <button onclick="addReflection()">Add</button>
-    </div>
-    <div id="reflectionsList"></div>
-  </div>
-</main>
-
-<footer>&copy; 2026 Aksh</footer>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script>
-// --- REPLACE THIS WITH YOUR FIREBASE CONFIG ---
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-// --- Visitor Counter ---
-db.collection("stats").doc("visitors").get().then(doc=>{
-  if(doc.exists){
-    let count = doc.data().count+1;
-    db.collection("stats").doc("visitors").set({count: count});
-    document.getElementById("visitorCount").innerText = "Visitors: "+count;
-  }else{
-    db.collection("stats").doc("visitors").set({count: 1});
-    document.getElementById("visitorCount").innerText = "Visitors: 1";
-  }
-});
-
-// --- Likes ---
-function likeItem(id){
-  const likeRef = db.collection("likes").doc(id);
-  likeRef.get().then(doc=>{
-    if(doc.exists){
-      likeRef.update({count: firebase.firestore.FieldValue.increment(1)});
-      document.getElementById("likes-"+id).innerText = doc.data().count+1;
-    }else{
-      likeRef.set({count:1});
-      document.getElementById("likes-"+id).innerText = 1;
-    }
-  });
-}
-
-// --- Load existing likes ---
-["quote1","thoughts1"].forEach(id=>{
-  db.collection("likes").doc(id).get().then(doc=>{
-    if(doc.exists){
-      document.getElementById("likes-"+id).innerText = doc.data().count;
-    }
-  });
-});
-
-// --- Reflections ---
-const list = document.getElementById('reflectionsList');
-function addReflectionDiv(text,id){
-  const div = document.createElement('div');
-  div.className = 'card';
-  div.innerHTML = text + ' <span class="likeBtn" onclick="likeItem(\''+id+'\')">👍 <span id="likes-'+id+'">0</span></span>';
-  list.prepend(div);
-  setTimeout(()=>{ div.style.transition='opacity 0.8s, transform 0.8s'; div.style.opacity=1; div.style.transform='translateY(0) scale(1)'; },50);
-}
-function addReflection(){
-  const input = document.getElementById('newReflection');
-  const text = input.value.trim();
-  if(text){
-    const id = "reflection_"+Date.now();
-    db.collection("reflections").doc(id).set({text:text,count:0});
-    addReflectionDiv(text,id);
-    input.value='';
-  }
-}
-
-// --- Load reflections from Firebase ---
-db.collection("reflections").get().then(snapshot=>{
-  snapshot.forEach(doc=>{
-    addReflectionDiv(doc.data().text,doc.id);
-    document.getElementById("likes-"+doc.id).innerText = doc.data().count;
-  });
-});
-</script>
-</body>
-</html>
