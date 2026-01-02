@@ -84,11 +84,12 @@ header p {
 .post:hover { transform:translateY(-3px); box-shadow:0 12px 25px rgba(0,0,0,0.12); }
 .post p { font-size:1rem; line-height:1.6; }
 
-.color-1 { background:#fef9c3; } /* pastel yellow */
-.color-2 { background:#e0f7fa; } /* pastel cyan */
-.color-3 { background:#ede9fe; } /* pastel purple */
-.color-4 { background:#dcfce7; } /* pastel green */
-.color-5 { background:#ffe4e6; } /* pastel pink */
+/* Multiple pastel colors */
+.color-1 { background:#fde2e4; } /* pastel pink */
+.color-2 { background:#e0f2fe; } /* pastel blue */
+.color-3 { background:#dcfce7; } /* pastel green */
+.color-4 { background:#ede9fe; } /* pastel purple */
+.color-5 { background:#fff9c4; } /* pastel yellow */
 
 .meta {
   margin-top:12px;
@@ -211,13 +212,14 @@ function addComment(button) {
   input.value="";
 }
 
-// Add post
+// Add post with random pastel color
 function addPost() {
   const text = document.getElementById("newThought").value.trim();
   if(!text) return;
   const postsDiv = document.getElementById("posts");
   const postDiv = document.createElement("div");
-  postDiv.className="post color-"+(Math.floor(Math.random()*5)+1);
+  const colorNum = Math.floor(Math.random()*5)+1; // 1-5
+  postDiv.className="post color-"+colorNum;
   postDiv.innerHTML = `
     <p>${text}</p>
     <div class="meta">
