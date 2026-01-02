@@ -11,39 +11,43 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #eaf8ff, #f7fcff);
+  background: linear-gradient(to bottom, #eaf6ff, #ffffff);
   color: #243447;
 }
 
+/* Header */
 header {
   text-align: center;
-  padding: 50px 20px 30px;
+  padding: 60px 20px 30px;
 }
 
 header h1 {
+  font-size: 2.7rem;
   margin: 0;
-  font-size: 2.6rem;
   color: #0b3c5d;
 }
 
 header p {
-  margin-top: 8px;
+  margin-top: 10px;
   color: #3a6ea5;
   font-style: italic;
 }
 
+/* Main container */
 .container {
-  max-width: 900px;
+  max-width: 800px;
   margin: auto;
   padding: 20px;
 }
 
+/* Blog card */
 .post {
   background: #ffffff;
-  border-radius: 18px;
-  padding: 28px;
-  margin-bottom: 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 35px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  animation: fadeIn 0.8s ease;
 }
 
 .post h2 {
@@ -53,31 +57,45 @@ header p {
 
 .post p {
   line-height: 1.7;
+  font-size: 1rem;
   color: #34495e;
 }
 
+/* Like + view row */
 .meta {
-  margin-top: 20px;
+  margin-top: 22px;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
   font-size: 0.9rem;
   color: #4a6fa5;
 }
 
-.meta span {
+button {
+  background: #5fa8ff;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 20px;
   cursor: pointer;
-  user-select: none;
+  font-weight: 600;
 }
 
-.meta span:hover {
-  text-decoration: underline;
+button:hover {
+  background: #4a97f5;
 }
 
+/* Footer */
 footer {
   text-align: center;
   padding: 40px 10px;
   color: #0b3c5d;
   font-size: 0.9rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -85,27 +103,25 @@ footer {
 <body>
 
 <header>
-  <h1>Aksh's Reflections</h1>
-  <p>Short thoughts. Quiet clarity. ✨</p>
+  <h1>Aksh Reflections</h1>
+  <p>Thoughts worth sharing ✨</p>
 </header>
 
 <div class="container">
 
   <!-- BLOG POST -->
-  <div class="post" id="post1">
-    <h2>Learning to Pause</h2>
+  <div class="post">
+    <h2>Learning to Slow Down</h2>
     <p>
-      Not every moment needs a response. Sometimes, pausing is the most powerful
-      decision you can make. Silence can be clarity.
+      Life doesn’t always need speed. Sometimes clarity arrives when we pause,
+      breathe, and allow ourselves to exist without pressure.
     </p>
 
     <div class="meta">
-      <span onclick="likePost('post1')">❤️ Likes: <b id="likes-post1">0</b></span>
-      <span>👀 Views: <b id="views-post1">0</b></span>
+      <span>👀 Views: <b id="views">0</b></span>
+      <button onclick="like()">❤️ Like <span id="likes">0</span></button>
     </div>
   </div>
-
-  <!-- ADD MORE POSTS BY COPYING ABOVE BLOCK -->
 
 </div>
 
@@ -114,27 +130,21 @@ footer {
 </footer>
 
 <script>
-function initPost(id) {
-  // Views
-  let views = localStorage.getItem(id + '-views') || 0;
-  views++;
-  localStorage.setItem(id + '-views', views);
-  document.getElementById('views-' + id).innerText = views;
+// Simple views counter
+let views = localStorage.getItem("views") || 0;
+views++;
+localStorage.setItem("views", views);
+document.getElementById("views").innerText = views;
 
-  // Likes
-  let likes = localStorage.getItem(id + '-likes') || 0;
-  document.getElementById('likes-' + id).innerText = likes;
-}
+// Simple likes
+let likes = localStorage.getItem("likes") || 0;
+document.getElementById("likes").innerText = likes;
 
-function likePost(id) {
-  let likes = localStorage.getItem(id + '-likes') || 0;
+function like() {
   likes++;
-  localStorage.setItem(id + '-likes', likes);
-  document.getElementById('likes-' + id).innerText = likes;
+  localStorage.setItem("likes", likes);
+  document.getElementById("likes").innerText = likes;
 }
-
-// Initialize posts
-initPost('post1');
 </script>
 
 </body>
