@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aksh Reflections</title>
+<title>Aksh – Thoughts & Reflections</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -11,116 +11,150 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #eaf6ff, #ffffff);
-  color: #243447;
+  background: linear-gradient(to bottom right, #dbeafe, #fef3c7);
+  color: #1f2933;
 }
 
 /* Header */
 header {
+  padding: 60px 20px 40px;
   text-align: center;
-  padding: 60px 20px 30px;
 }
 
 header h1 {
-  font-size: 2.7rem;
+  font-size: 3rem;
   margin: 0;
-  color: #0b3c5d;
+  color: #1e3a8a;
 }
 
 header p {
   margin-top: 10px;
-  color: #3a6ea5;
-  font-style: italic;
+  font-size: 1.1rem;
+  color: #475569;
 }
 
-/* Main container */
+/* Hero image */
+.hero {
+  max-width: 900px;
+  margin: 30px auto;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.hero img {
+  width: 100%;
+  display: block;
+}
+
+/* Container */
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
   padding: 20px;
 }
 
 /* Add section */
 .add-box {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 28px;
+  background: linear-gradient(to right, #ffffff, #f0f9ff);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   margin-bottom: 40px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
 }
 
 .add-box h2 {
   margin-top: 0;
-  color: #0b3c5d;
+  color: #1e40af;
 }
 
 textarea {
   width: 100%;
   min-height: 120px;
-  padding: 14px;
-  border-radius: 14px;
-  border: 1px solid #cfe3ff;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
+  border-radius: 16px;
+  border: 1px solid #c7d2fe;
+  padding: 16px;
+  font-size: 1rem;
   resize: vertical;
 }
 
 textarea:focus {
   outline: none;
-  border-color: #5fa8ff;
+  border-color: #6366f1;
 }
 
 button {
   margin-top: 14px;
-  background: #5fa8ff;
+  padding: 12px 22px;
+  border-radius: 30px;
   border: none;
+  background: #6366f1;
   color: white;
-  padding: 12px 20px;
-  border-radius: 22px;
-  cursor: pointer;
   font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
 button:hover {
-  background: #4a97f5;
+  background: #4f46e5;
+  transform: scale(1.05);
 }
 
-/* Blog post */
+/* Posts */
 .post {
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 30px;
   margin-bottom: 30px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
-  animation: fadeIn 0.6s ease;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  animation: fadeUp 0.6s ease;
 }
 
 .post p {
+  font-size: 1.05rem;
   line-height: 1.7;
-  color: #34495e;
+  color: #334155;
 }
 
-/* Likes + views */
+/* Like row */
 .meta {
-  margin-top: 18px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 0.9rem;
-  color: #4a6fa5;
+  color: #475569;
+}
+
+.like-btn {
+  background: #f472b6;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.like-btn:hover {
+  background: #ec4899;
 }
 
 /* Footer */
 footer {
   text-align: center;
   padding: 40px 10px;
-  color: #0b3c5d;
-  font-size: 0.9rem;
+  color: #1e3a8a;
 }
 
 /* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
 </head>
@@ -128,40 +162,35 @@ footer {
 <body>
 
 <header>
-  <h1>Aksh Reflections</h1>
-  <p>Thoughts worth sharing ✨</p>
+  <h1>Aksh’s Thoughts</h1>
+  <p>Sharing small ideas that feel big ✨</p>
 </header>
+
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80" alt="Calm nature">
+</div>
 
 <div class="container">
 
-  <!-- ADD SECTION -->
+  <!-- Add Section -->
   <div class="add-box">
-    <h2>Write a Thought</h2>
-    <textarea id="textInput" placeholder="Write something you want to share with the world..."></textarea>
+    <h2>Write something ✍️</h2>
+    <textarea id="input" placeholder="Share a thought, reflection, or idea..."></textarea>
     <button onclick="addPost()">Publish</button>
   </div>
 
-  <!-- POSTS -->
+  <!-- Posts -->
   <div id="posts"></div>
 
 </div>
 
 <footer>
-  © 2026 Aksh
+  © 2026 Aksh • Built with curiosity 💙
 </footer>
 
 <script>
-// Views counter
-let views = localStorage.getItem("views") || 0;
-views++;
-localStorage.setItem("views", views);
-
-// Likes
-let likes = localStorage.getItem("likes") || 0;
-
-// Add post
 function addPost() {
-  const input = document.getElementById("textInput");
+  const input = document.getElementById("input");
   const text = input.value.trim();
   if (!text) return;
 
@@ -170,8 +199,8 @@ function addPost() {
   post.innerHTML = `
     <p>${text}</p>
     <div class="meta">
-      <span>👀 Views: ${views}</span>
-      <button onclick="like(this)">❤️ Like <span>0</span></button>
+      <span>Shared just now</span>
+      <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
     </div>
   `;
 
@@ -179,10 +208,9 @@ function addPost() {
   input.value = "";
 }
 
-// Like button
-function like(btn) {
-  const span = btn.querySelector("span");
-  span.textContent = Number(span.textContent) + 1;
+function like(el) {
+  const count = el.querySelector("b");
+  count.textContent = Number(count.textContent) + 1;
 }
 </script>
 
