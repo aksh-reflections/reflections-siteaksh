@@ -15,6 +15,13 @@ body {
   color: #1f2937;
 }
 
+/* Gradient text for Aksh */
+.gradient-text {
+  background: linear-gradient(90deg, #3b82f6, #f43f5e, #facc15, #10b981, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* Header */
 header {
   padding: 60px 20px 40px;
@@ -24,7 +31,6 @@ header {
 header h1 {
   font-size: 3rem;
   margin: 0;
-  color: #1e3a8a;
 }
 
 header p {
@@ -47,7 +53,6 @@ header p {
 }
 
 .hero h2 {
-  color: #1e3a8a;
   font-size: 2rem;
   font-weight: 600;
 }
@@ -164,13 +169,13 @@ footer {
 <body>
 
 <header>
-  <h1>Aksh’s Thoughts</h1>
+  <h1><span class="gradient-text">Aksh</span>’s Thoughts</h1>
   <p>Colorful ideas, shared freely ✨</p>
 </header>
 
 <!-- Hero Gradient -->
 <div class="hero">
-  <h2>Welcome to Aksh's Reflections</h2>
+  <h2><span class="gradient-text">Aksh</span>'s Reflections</h2>
 </div>
 
 <div class="container">
@@ -188,7 +193,7 @@ footer {
 </div>
 
 <footer>
-  © 2026 Aksh
+  © 2026 <span class="gradient-text">Aksh</span>
 </footer>
 
 <script>
