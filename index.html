@@ -9,7 +9,7 @@
 body {
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:#fdfdfd; /* soft white */
+  background:#fdfdfd;
   color:#1f2937;
 }
 header {
@@ -20,16 +20,16 @@ header h1 {
   font-family:'Playfair Display', serif;
   font-size:2.5rem;
   margin:0;
-  color:#3b82f6; /* pastel blue */
+  color:#3b82f6;
 }
 header p {
   margin-top:8px;
   font-style:italic;
-  color:#64748b; /* soft gray */
+  color:#64748b;
 }
 
 .hero {
-  background:#e0f2fe; /* pastel blue */
+  background:#e0f2fe;
   height:150px;
   border-radius:15px;
   margin:20px auto;
@@ -51,6 +51,28 @@ header p {
   padding:15px;
 }
 
+/* Admin panel */
+.admin-panel { margin-bottom:30px; text-align:center; display:none; }
+.admin-panel textarea {
+  width:70%;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid #93c5fd;
+  font-size:1rem;
+  resize:none;
+}
+.admin-panel button {
+  margin-top:8px;
+  padding:10px 16px;
+  border:none;
+  border-radius:12px;
+  background:#3b82f6;
+  color:white;
+  cursor:pointer;
+  font-size:1rem;
+}
+.admin-panel button:hover { background:#2563eb; }
+
 /* Posts */
 .post {
   border-radius:15px;
@@ -63,11 +85,11 @@ header p {
 .post p { font-size:1rem; line-height:1.6; }
 
 /* Multiple pastel colors */
-.color-1 { background:#fde2e4; } /* pastel pink */
-.color-2 { background:#e0f2fe; } /* pastel blue */
-.color-3 { background:#dcfce7; } /* pastel green */
-.color-4 { background:#ede9fe; } /* pastel purple */
-.color-5 { background:#fff9c4; } /* pastel yellow */
+.color-1 { background:#fde2e4; } /* pink */
+.color-2 { background:#e0f2fe; } /* blue */
+.color-3 { background:#dcfce7; } /* green */
+.color-4 { background:#ede9fe; } /* purple */
+.color-5 { background:#fff9c4; } /* yellow */
 
 .meta {
   margin-top:12px;
@@ -135,7 +157,13 @@ footer {
 
 <div class="container">
 
-  <!-- POSTS: Add your reflections here -->
+  <!-- Admin panel (only ?admin=1 shows it) -->
+  <div class="admin-panel" id="adminPanel">
+    <textarea id="newThought" rows="3" placeholder="Write your reflection here..."></textarea><br>
+    <button onclick="addPost()">Add Thought</button>
+  </div>
+
+  <!-- Posts -->
   <div id="posts">
     <div class="post color-1">
       <p>Sometimes the smallest step in the right direction ends up being the biggest step of your life.</p>
@@ -151,40 +179,6 @@ footer {
         </div>
       </div>
     </div>
-
-    <div class="post color-2">
-      <p>Your reflections can change your life — take a moment to write down what you feel today.</p>
-      <div class="meta">
-        <span>Just shared</span>
-        <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
-      </div>
-      <div class="comment-section">
-        <div class="comments"></div>
-        <div class="comment-box">
-          <input type="text" placeholder="Add a comment">
-          <button onclick="addComment(this)">Comment</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ADD MORE REFLECTIONS BELOW -->
-    <!--
-    <div class="post color-3">
-      <p>Your reflection here...</p>
-      <div class="meta">
-        <span>Just shared</span>
-        <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
-      </div>
-      <div class="comment-section">
-        <div class="comments"></div>
-        <div class="comment-box">
-          <input type="text" placeholder="Add a comment">
-          <button onclick="addComment(this)">Comment</button>
-        </div>
-      </div>
-    </div>
-    -->
-
   </div>
 
 </div>
@@ -194,6 +188,11 @@ footer {
 </footer>
 
 <script>
+// Show admin panel only if URL contains ?admin=1
+if(window.location.search.includes("admin=1")) {
+  document.getElementById("adminPanel").style.display = "block";
+}
+
 // Like posts
 function like(el) {
   const count = el.querySelector("b");
@@ -211,6 +210,32 @@ function addComment(button) {
   comment.textContent = text;
   commentsDiv.appendChild(comment);
   input.value="";
+}
+
+// Add post with random pastel color
+function addPost() {
+  const text = document.getElementById("newThought").value.trim();
+  if(!text) return;
+  const postsDiv = document.getElementById("posts");
+  const postDiv = document.createElement("div");
+  const colorNum = Math.floor(Math.random()*5)+1; // 1-5
+  postDiv.className="post color-"+colorNum;
+  postDiv.innerHTML = `
+    <p>${text}</p>
+    <div class="meta">
+      <span>Just shared</span>
+      <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
+    </div>
+    <div class="comment-section">
+      <div class="comments"></div>
+      <div class="comment-box">
+        <input type="text" placeholder="Add a comment">
+        <button onclick="addComment(this)">Comment</button>
+      </div>
+    </div>
+  `;
+  postsDiv.prepend(postDiv);
+  document.getElementById("newThought").value="";
 }
 </script>
 
