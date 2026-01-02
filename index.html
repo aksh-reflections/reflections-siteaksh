@@ -11,8 +11,8 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom right, #dbeafe, #fef3c7);
-  color: #1f2933;
+  background: linear-gradient(to bottom, #eef6ff, #ffffff);
+  color: #1f2937;
 }
 
 /* Header */
@@ -29,15 +29,14 @@ header h1 {
 
 header p {
   margin-top: 10px;
-  font-size: 1.1rem;
   color: #475569;
 }
 
-/* Hero image */
+/* Hero */
 .hero {
   max-width: 900px;
   margin: 30px auto;
-  border-radius: 24px;
+  border-radius: 26px;
   overflow: hidden;
   box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
@@ -57,7 +56,7 @@ header p {
 /* Add section */
 .add-box {
   background: linear-gradient(to right, #ffffff, #f0f9ff);
-  border-radius: 24px;
+  border-radius: 26px;
   padding: 30px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   margin-bottom: 40px;
@@ -75,7 +74,6 @@ textarea {
   border: 1px solid #c7d2fe;
   padding: 16px;
   font-size: 1rem;
-  resize: vertical;
 }
 
 textarea:focus {
@@ -92,18 +90,15 @@ button {
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
 }
 
 button:hover {
   background: #4f46e5;
-  transform: scale(1.05);
 }
 
 /* Posts */
 .post {
-  background: #ffffff;
-  border-radius: 24px;
+  border-radius: 26px;
   padding: 30px;
   margin-bottom: 30px;
   box-shadow: 0 18px 40px rgba(0,0,0,0.12);
@@ -113,29 +108,34 @@ button:hover {
 .post p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #334155;
 }
 
-/* Like row */
+/* Post colors */
+.color-1 { background: #e0f2fe; }
+.color-2 { background: #fde68a; }
+.color-3 { background: #ede9fe; }
+.color-4 { background: #dcfce7; }
+.color-5 { background: #ffe4e6; }
+
+/* Meta */
 .meta {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-size: 0.9rem;
-  color: #475569;
+  color: #374151;
 }
 
 .like-btn {
-  background: #f472b6;
+  background: #111827;
+  color: white;
   padding: 8px 16px;
   border-radius: 20px;
-  color: white;
   cursor: pointer;
 }
 
 .like-btn:hover {
-  background: #ec4899;
+  background: #000;
 }
 
 /* Footer */
@@ -147,14 +147,8 @@ footer {
 
 /* Animation */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -163,19 +157,19 @@ footer {
 
 <header>
   <h1>Aksh’s Thoughts</h1>
-  <p>Sharing small ideas that feel big ✨</p>
+  <p>Colorful ideas, shared freely ✨</p>
 </header>
 
 <div class="hero">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80" alt="Calm nature">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80" alt="Nature">
 </div>
 
 <div class="container">
 
-  <!-- Add Section -->
+  <!-- Add section -->
   <div class="add-box">
-    <h2>Write something ✍️</h2>
-    <textarea id="input" placeholder="Share a thought, reflection, or idea..."></textarea>
+    <h2>Write a thought ✍️</h2>
+    <textarea id="input" placeholder="Share something meaningful..."></textarea>
     <button onclick="addPost()">Publish</button>
   </div>
 
@@ -185,27 +179,32 @@ footer {
 </div>
 
 <footer>
-  © 2026 Aksh • Built with curiosity 💙
+  © 2026 Aksh
 </footer>
 
 <script>
+let colorIndex = 1;
+
 function addPost() {
   const input = document.getElementById("input");
   const text = input.value.trim();
   if (!text) return;
 
   const post = document.createElement("div");
-  post.className = "post";
+  post.className = "post color-" + colorIndex;
   post.innerHTML = `
     <p>${text}</p>
     <div class="meta">
-      <span>Shared just now</span>
+      <span>Just now</span>
       <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
     </div>
   `;
 
   document.getElementById("posts").prepend(post);
   input.value = "";
+
+  colorIndex++;
+  if (colorIndex > 5) colorIndex = 1;
 }
 
 function like(el) {
