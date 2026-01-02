@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aksh's Reflection Space</title>
+<title>Aksh Reflections</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -11,128 +11,68 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #eaf8ff, #f6fdff);
+  background: linear-gradient(to bottom, #eaf8ff, #f7fcff);
   color: #243447;
 }
 
-/* Header */
 header {
   text-align: center;
   padding: 50px 20px 30px;
 }
 
 header h1 {
-  font-size: 2.6rem;
   margin: 0;
+  font-size: 2.6rem;
   color: #0b3c5d;
 }
 
 header p {
   margin-top: 8px;
-  font-style: italic;
   color: #3a6ea5;
+  font-style: italic;
 }
 
-/* Cards layout */
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 30px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
 }
 
-/* Card base */
-.card {
-  padding: 26px;
-  border-radius: 20px;
+.post {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 30px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-}
-
-.card h2 {
+.post h2 {
   margin-top: 0;
-  font-size: 1.3rem;
   color: #0b3c5d;
 }
 
-/* Card colors */
-.perspective {
-  background: #eef4ff;
-}
-
-.quote {
-  background: #fff5e1;
-}
-
-.thoughts {
-  background: #f3eaff;
-}
-
-.add {
-  background: #e9fff7;
-}
-
-/* Quote styling */
-blockquote {
-  margin: 12px 0 0;
-  padding: 12px 16px;
-  background: #ffffff;
-  border-left: 4px solid #7aa7ff;
-  border-radius: 10px;
-  font-style: italic;
+.post p {
+  line-height: 1.7;
   color: #34495e;
 }
 
-/* Add reflection */
-input {
-  width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #cfe3ff;
-  margin-top: 10px;
-  font-size: 0.95rem;
+.meta {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #4a6fa5;
 }
 
-input:focus {
-  outline: none;
-  border-color: #7aa7ff;
-}
-
-button {
-  width: 100%;
-  margin-top: 12px;
-  padding: 14px;
-  border: none;
-  border-radius: 12px;
-  background: #5fa8ff;
-  color: white;
-  font-weight: 600;
+.meta span {
   cursor: pointer;
+  user-select: none;
 }
 
-button:hover {
-  background: #4a97f5;
+.meta span:hover {
+  text-decoration: underline;
 }
 
-/* Reflections list */
-#list {
-  margin-top: 16px;
-}
-
-.reflection {
-  margin-top: 10px;
-  padding-left: 12px;
-  border-left: 3px solid #9adbd0;
-  color: #2f4f4f;
-}
-
-/* Footer */
 footer {
   text-align: center;
   padding: 40px 10px;
@@ -145,39 +85,28 @@ footer {
 <body>
 
 <header>
-  <h1>Aksh's Reflection Journal</h1>
-  <p>Write. Reflect. Grow. ✨</p>
+  <h1>Aksh's Reflections</h1>
+  <p>Short thoughts. Quiet clarity. ✨</p>
 </header>
 
 <div class="container">
-  <div class="card perspective">
-    <h2>Perspective</h2>
+
+  <!-- BLOG POST -->
+  <div class="post" id="post1">
+    <h2>Learning to Pause</h2>
     <p>
-      Look at situations from different angles. Small shifts in view can bring clarity and calm.
+      Not every moment needs a response. Sometimes, pausing is the most powerful
+      decision you can make. Silence can be clarity.
     </p>
+
+    <div class="meta">
+      <span onclick="likePost('post1')">❤️ Likes: <b id="likes-post1">0</b></span>
+      <span>👀 Views: <b id="views-post1">0</b></span>
+    </div>
   </div>
 
-  <div class="card quote">
-    <h2>Quote of the Day</h2>
-    <blockquote>
-      “Happiness depends upon ourselves.” — Aristotle
-    </blockquote>
-  </div>
+  <!-- ADD MORE POSTS BY COPYING ABOVE BLOCK -->
 
-  <div class="card thoughts">
-    <h2>My Thoughts</h2>
-    <p>
-      Notice the little joys around you — sunlight, a smile, or a quiet moment.
-      They shape your day more than you think.
-    </p>
-  </div>
-
-  <div class="card add">
-    <h2>Add a New Reflection</h2>
-    <input type="text" id="input" placeholder="Type your reflection here..." />
-    <button onclick="addReflection()">Add</button>
-    <div id="list"></div>
-  </div>
 </div>
 
 <footer>
@@ -185,18 +114,27 @@ footer {
 </footer>
 
 <script>
-function addReflection() {
-  const input = document.getElementById("input");
-  const text = input.value.trim();
-  if (!text) return;
+function initPost(id) {
+  // Views
+  let views = localStorage.getItem(id + '-views') || 0;
+  views++;
+  localStorage.setItem(id + '-views', views);
+  document.getElementById('views-' + id).innerText = views;
 
-  const div = document.createElement("div");
-  div.className = "reflection";
-  div.textContent = text;
-
-  document.getElementById("list").prepend(div);
-  input.value = "";
+  // Likes
+  let likes = localStorage.getItem(id + '-likes') || 0;
+  document.getElementById('likes-' + id).innerText = likes;
 }
+
+function likePost(id) {
+  let likes = localStorage.getItem(id + '-likes') || 0;
+  likes++;
+  localStorage.setItem(id + '-likes', likes);
+  document.getElementById('likes-' + id).innerText = likes;
+}
+
+// Initialize posts
+initPost('post1');
 </script>
 
 </body>
