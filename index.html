@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aksh Chat Reflections</title>
+<title>Aksh's Reflection Space</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -11,168 +11,191 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Chat container */
-.chat-container {
-  width: 100%;
-  max-width: 420px;
-  height: 85vh;
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  background: linear-gradient(to bottom, #eaf8ff, #f6fdff);
+  color: #243447;
 }
 
 /* Header */
-.chat-header {
-  background: linear-gradient(135deg, #5f7cff, #6a5acd);
-  color: white;
-  padding: 18px;
+header {
   text-align: center;
+  padding: 50px 20px 30px;
 }
 
-.chat-header h1 {
-  font-size: 1.2rem;
+header h1 {
+  font-size: 2.6rem;
   margin: 0;
+  color: #0b3c5d;
 }
 
-.chat-header p {
-  font-size: 0.8rem;
-  opacity: 0.9;
-  margin: 4px 0 0;
+header p {
+  margin-top: 8px;
+  font-style: italic;
+  color: #3a6ea5;
 }
 
-/* Messages area */
-.chat-box {
-  flex: 1;
-  padding: 16px;
-  overflow-y: auto;
-  background: #f5f7fb;
+/* Cards layout */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
 }
 
-/* Message bubbles */
-.message {
-  max-width: 75%;
-  padding: 12px 14px;
-  border-radius: 14px;
-  margin-bottom: 12px;
-  animation: popIn 0.3s ease;
-  font-size: 0.9rem;
+/* Card base */
+.card {
+  padding: 26px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
 }
 
-/* Bot */
-.bot {
-  background: #e3ebff;
-  color: #2c3e50;
-  align-self: flex-start;
-  border-bottom-left-radius: 4px;
+.card:hover {
+  transform: translateY(-6px);
 }
 
-/* User */
-.user {
-  background: #dcd6ff;
-  color: #2c2c54;
-  align-self: flex-end;
-  border-bottom-right-radius: 4px;
+.card h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #0b3c5d;
 }
 
-/* Input area */
-.chat-input {
-  display: flex;
-  padding: 12px;
-  background: white;
-  border-top: 1px solid #eee;
+/* Card colors */
+.perspective {
+  background: #eef4ff;
 }
 
-.chat-input input {
-  flex: 1;
-  padding: 12px;
+.quote {
+  background: #fff5e1;
+}
+
+.thoughts {
+  background: #f3eaff;
+}
+
+.add {
+  background: #e9fff7;
+}
+
+/* Quote styling */
+blockquote {
+  margin: 12px 0 0;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-left: 4px solid #7aa7ff;
+  border-radius: 10px;
+  font-style: italic;
+  color: #34495e;
+}
+
+/* Add reflection */
+input {
+  width: 100%;
+  padding: 14px;
   border-radius: 12px;
-  border: 1px solid #ccc;
-  font-size: 0.9rem;
+  border: 1px solid #cfe3ff;
+  margin-top: 10px;
+  font-size: 0.95rem;
 }
 
-.chat-input input:focus {
+input:focus {
   outline: none;
-  border-color: #6a5acd;
+  border-color: #7aa7ff;
 }
 
-.chat-input button {
-  margin-left: 8px;
-  padding: 0 16px;
-  border-radius: 12px;
+button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
   border: none;
-  background: #6a5acd;
+  border-radius: 12px;
+  background: #5fa8ff;
   color: white;
   font-weight: 600;
   cursor: pointer;
 }
 
-.chat-input button:hover {
-  background: #5a4bcf;
+button:hover {
+  background: #4a97f5;
 }
 
-/* Animation */
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+/* Reflections list */
+#list {
+  margin-top: 16px;
+}
+
+.reflection {
+  margin-top: 10px;
+  padding-left: 12px;
+  border-left: 3px solid #9adbd0;
+  color: #2f4f4f;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 10px;
+  color: #0b3c5d;
+  font-size: 0.9rem;
 }
 </style>
 </head>
 
 <body>
 
-<div class="chat-container">
-  <div class="chat-header">
-    <h1>Aksh</h1>
-    <p>Your reflection space</p>
+<header>
+  <h1>Aksh's Reflection Journal</h1>
+  <p>Write. Reflect. Grow. ✨</p>
+</header>
+
+<div class="container">
+  <div class="card perspective">
+    <h2>Perspective</h2>
+    <p>
+      Look at situations from different angles. Small shifts in view can bring clarity and calm.
+    </p>
   </div>
 
-  <div class="chat-box" id="chatBox">
-    <div class="message bot">
-      Hi 👋 I’m here to listen. What’s on your mind today?
-    </div>
+  <div class="card quote">
+    <h2>Quote of the Day</h2>
+    <blockquote>
+      “Happiness depends upon ourselves.” — Aristotle
+    </blockquote>
   </div>
 
-  <div class="chat-input">
-    <input type="text" id="input" placeholder="Type your thought..." />
-    <button onclick="send()">Send</button>
+  <div class="card thoughts">
+    <h2>My Thoughts</h2>
+    <p>
+      Notice the little joys around you — sunlight, a smile, or a quiet moment.
+      They shape your day more than you think.
+    </p>
+  </div>
+
+  <div class="card add">
+    <h2>Add a New Reflection</h2>
+    <input type="text" id="input" placeholder="Type your reflection here..." />
+    <button onclick="addReflection()">Add</button>
+    <div id="list"></div>
   </div>
 </div>
 
+<footer>
+  © 2026 Aksh
+</footer>
+
 <script>
-function send() {
+function addReflection() {
   const input = document.getElementById("input");
   const text = input.value.trim();
   if (!text) return;
 
-  const chatBox = document.getElementById("chatBox");
+  const div = document.createElement("div");
+  div.className = "reflection";
+  div.textContent = text;
 
-  // User message
-  const userMsg = document.createElement("div");
-  userMsg.className = "message user";
-  userMsg.textContent = text;
-  chatBox.appendChild(userMsg);
-
+  document.getElementById("list").prepend(div);
   input.value = "";
-  chatBox.scrollTop = chatBox.scrollHeight;
-
-  // Bot reply
-  setTimeout(() => {
-    const botMsg = document.createElement("div");
-    botMsg.className = "message bot";
-    botMsg.textContent = "Thank you for sharing 🌱";
-    chatBox.appendChild(botMsg);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }, 600);
 }
 </script>
 
