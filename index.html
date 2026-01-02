@@ -62,6 +62,7 @@ header p {
 .admin-panel {
   margin-bottom: 30px;
   text-align: center;
+  display: none; /* hidden by default */
 }
 
 .admin-panel input, .admin-panel textarea {
@@ -85,6 +86,34 @@ header p {
 }
 
 .admin-panel button:hover {
+  background: #4f46e5;
+}
+
+/* Login Section */
+#adminLogin {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#adminLogin input {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #c7d2fe;
+  font-size: 1rem;
+}
+
+#adminLogin button {
+  padding: 10px 16px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 12px;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#adminLogin button:hover {
   background: #4f46e5;
 }
 
@@ -203,16 +232,22 @@ footer {
 
 <div class="container">
 
+  <!-- Admin Login -->
+  <div id="adminLogin">
+    <input type="password" id="adminPass" placeholder="Enter password to add post">
+    <button onclick="checkPassword()">Login</button>
+  </div>
+
   <!-- Admin Panel to add posts -->
   <div class="admin-panel">
     <textarea id="newThought" rows="3" placeholder="Write your reflection here..."></textarea><br>
     <button onclick="addPost()">Add Thought</button>
   </div>
 
-  <!-- Existing posts -->
+  <!-- Posts container -->
   <div id="posts">
     <div class="post color-1">
-      <p>Every ending is a chance to start a new and embrace brighter days ahead.</p>
+      <p>Sometimes the smallest step in the right direction ends up being the biggest step of your life.</p>
       <div class="meta">
         <span>Just shared</span>
         <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
@@ -234,6 +269,18 @@ footer {
 </footer>
 
 <script>
+const PASSWORD = "aksh123"; // change to any password you like
+
+function checkPassword() {
+  const input = document.getElementById("adminPass").value;
+  if (input === PASSWORD) {
+    document.querySelector(".admin-panel").style.display = "block";
+    document.getElementById("adminLogin").style.display = "none";
+  } else {
+    alert("Incorrect password!");
+  }
+}
+
 function like(el) {
   const count = el.querySelector("b");
   count.textContent = Number(count.textContent) + 1;
@@ -285,5 +332,3 @@ function addPost() {
 
 </body>
 </html>
-
-
