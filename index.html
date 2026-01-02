@@ -60,51 +60,6 @@ header p {
   padding: 20px;
 }
 
-/* Add section */
-.add-box {
-  background: linear-gradient(to right, #ffffff, #f0f9ff);
-  border-radius: 26px;
-  padding: 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  margin-bottom: 40px;
-}
-
-.add-box h2 {
-  margin-top: 0;
-  color: #1e40af;
-}
-
-textarea {
-  width: 100%;
-  min-height: 120px;
-  border-radius: 16px;
-  border: 1px solid #c7d2fe;
-  padding: 16px;
-  font-size: 1rem;
-}
-
-textarea:focus {
-  outline: none;
-  border-color: #6366f1;
-}
-
-button {
-  margin-top: 14px;
-  padding: 12px 22px;
-  border-radius: 30px;
-  border: none;
-  background: #6366f1;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
-  background: #4f46e5;
-}
-
 /* Posts */
 .post {
   border-radius: 26px;
@@ -147,7 +102,7 @@ button:hover {
   background: #000;
 }
 
-/* Comment Section (if kept) */
+/* Comment Section */
 .comment-section {
   margin-top: 20px;
   border-top: 1px solid #c7d2fe;
@@ -211,18 +166,41 @@ footer {
 </header>
 
 <div class="hero">
-  <h2>Reflect. Write. Connect.</h2>
+  <h2>Reflect. Read. Connect.</h2>
 </div>
 
 <div class="container">
 
-  <div class="add-box">
-    <h2>What’s on your mind?</h2>
-    <textarea id="input" placeholder="Write something meaningful..."></textarea>
-    <button onclick="addPost()">Publish</button>
+  <!-- EXAMPLE POSTS: Add more by editing HTML -->
+  <div class="post color-1">
+    <p>Sometimes the smallest step in the right direction ends up being the biggest step of your life.</p>
+    <div class="meta">
+      <span>Just shared</span>
+      <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
+    </div>
+    <div class="comment-section">
+      <div class="comments"></div>
+      <div class="comment-box">
+        <input type="text" placeholder="Add a comment">
+        <button onclick="addComment(this)">Comment</button>
+      </div>
+    </div>
   </div>
 
-  <div id="posts"></div>
+  <div class="post color-2">
+    <p>Reflection is the lamp of the heart. Share your thoughts, and you illuminate someone else’s day.</p>
+    <div class="meta">
+      <span>Just shared</span>
+      <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
+    </div>
+    <div class="comment-section">
+      <div class="comments"></div>
+      <div class="comment-box">
+        <input type="text" placeholder="Add a comment">
+        <button onclick="addComment(this)">Comment</button>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -231,33 +209,23 @@ footer {
 </footer>
 
 <script>
-let colorIndex = 1;
-
-function addPost() {
-  const input = document.getElementById("input");
-  const text = input.value.trim();
-  if (!text) return;
-
-  const post = document.createElement("div");
-  post.className = "post color-" + colorIndex;
-  post.innerHTML = `
-    <p>${text}</p>
-    <div class="meta">
-      <span>Just shared</span>
-      <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
-    </div>
-  `;
-
-  document.getElementById("posts").prepend(post);
-  input.value = "";
-
-  colorIndex++;
-  if (colorIndex > 5) colorIndex = 1;
-}
-
 function like(el) {
   const count = el.querySelector("b");
   count.textContent = Number(count.textContent) + 1;
+}
+
+function addComment(button) {
+  const input = button.previousElementSibling;
+  const text = input.value.trim();
+  if (!text) return;
+
+  const commentsDiv = button.closest(".comment-section").querySelector(".comments");
+  const comment = document.createElement("div");
+  comment.className = "comment";
+  comment.textContent = text;
+  commentsDiv.appendChild(comment);
+
+  input.value = "";
 }
 </script>
 
