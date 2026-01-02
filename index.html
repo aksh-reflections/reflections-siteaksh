@@ -7,27 +7,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #f9fafc;
-  color: #1f2937;
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#f9fafc;
+  color:#1f2937;
 }
-header { padding: 50px 20px 30px; text-align:center;}
+header { padding:50px 20px 30px; text-align:center;}
 header h1 { font-size:2.5rem; margin:0; color:#1e3a8a;}
 header p { margin-top:8px; font-style:italic; color:#475569;}
-
-.hero {
-  background: linear-gradient(135deg, #dbeafe, #fef3c7);
-  height: 180px;
-  border-radius: 20px;
-  margin: 20px auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
+.hero { background: linear-gradient(135deg, #dbeafe, #fef3c7); height:180px; border-radius:20px; margin:20px auto; display:flex; align-items:center; justify-content:center; text-align:center;}
 .hero h2 { font-size:1.8rem; font-weight:600; color:#1e3a8a;}
-
 .container { max-width:850px; margin:auto; padding:15px; }
 
 /* Admin Panel */
@@ -40,12 +29,6 @@ header p { margin-top:8px; font-style:italic; color:#475569;}
 }
 .admin-panel button:hover { background:#4f46e5; }
 
-/* Admin login */
-#adminLogin { text-align:center; margin-bottom:30px; }
-#adminLogin input { padding:10px; border-radius:12px; border:1px solid #c7d2fe; font-size:1rem; }
-#adminLogin button { padding:10px 16px; margin-left:5px; border:none; border-radius:12px; background:#6366f1; color:white; cursor:pointer; font-size:1rem; }
-#adminLogin button:hover { background:#4f46e5; }
-
 /* Posts */
 .post { border-radius:20px; padding:20px; margin-bottom:20px; box-shadow:0 15px 30px rgba(0,0,0,0.08);}
 .post p { font-size:1rem; line-height:1.6; }
@@ -54,23 +37,18 @@ header p { margin-top:8px; font-style:italic; color:#475569;}
 .color-3 { background:#ede9fe; }
 .color-4 { background:#dcfce7; }
 .color-5 { background:#ffe4e6; }
-
 .meta { margin-top:15px; display:flex; justify-content:space-between; font-size:0.9rem; color:#374151; }
 .like-btn { background:#111827; color:white; padding:6px 14px; border-radius:20px; cursor:pointer; font-size:0.9rem; }
 .like-btn:hover { background:#000; }
-
-/* Comments */
 .comment-section { margin-top:15px; border-top:1px solid #c7d2fe; padding-top:12px; }
 .comment-box { display:flex; margin-bottom:10px; }
 .comment-box input { flex:1; padding:7px 12px; border-radius:14px; border:1px solid #c7d2fe; font-size:0.95rem; }
 .comment-box button { margin-left:8px; padding:7px 12px; border-radius:14px; border:none; background:#6366f1; color:white; cursor:pointer; font-size:0.9rem;}
 .comment-box button:hover { background:#4f46e5; }
 .comment { background:#f0f9ff; border-radius:14px; padding:6px 10px; margin-top:6px; font-size:0.9rem; }
-
 footer { text-align:center; padding:30px 10px; color:#1e3a8a; font-size:0.95rem; }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -84,14 +62,8 @@ footer { text-align:center; padding:30px 10px; color:#1e3a8a; font-size:0.95rem;
 
 <div class="container">
 
-  <!-- Admin Login -->
-  <div id="adminLogin">
-    <input type="password" id="adminPass" placeholder="Enter password to add post">
-    <button onclick="checkPassword()">Login</button>
-  </div>
-
-  <!-- Admin Panel -->
-  <div class="admin-panel">
+  <!-- Admin Panel (hidden unless ?admin=1 in URL) -->
+  <div class="admin-panel" id="adminPanel">
     <textarea id="newThought" rows="3" placeholder="Write your reflection here..."></textarea><br>
     <button onclick="addPost()">Add Thought</button>
   </div>
@@ -121,17 +93,9 @@ footer { text-align:center; padding:30px 10px; color:#1e3a8a; font-size:0.95rem;
 </footer>
 
 <script>
-// Set your secret password here
-const PASSWORD = "aksh123";
-
-function checkPassword() {
-  const input = document.getElementById("adminPass").value;
-  if (input === PASSWORD) {
-    document.querySelector(".admin-panel").style.display = "block";
-    document.getElementById("adminLogin").style.display = "none";
-  } else {
-    alert("Incorrect password!");
-  }
+// Show admin panel only if URL contains ?admin=1
+if(window.location.search.includes("admin=1")) {
+  document.getElementById("adminPanel").style.display = "block";
 }
 
 // Likes
