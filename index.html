@@ -12,210 +12,62 @@ body {
   background: #f9fafc;
   color: #1f2937;
 }
+header { padding: 50px 20px 30px; text-align:center;}
+header h1 { font-size:2.5rem; margin:0; color:#1e3a8a;}
+header p { margin-top:8px; font-style:italic; color:#475569;}
 
-/* Header */
-header {
-  padding: 50px 20px 30px;
-  text-align: center;
-}
-
-header h1 {
-  font-size: 2.5rem;
-  margin: 0;
-  color: #1e3a8a;
-}
-
-header p {
-  margin-top: 8px;
-  font-size: 1rem;
-  color: #475569;
-  font-style: italic;
-}
-
-/* Hero */
 .hero {
   background: linear-gradient(135deg, #dbeafe, #fef3c7);
-  height: 200px;
+  height: 180px;
   border-radius: 20px;
   margin: 20px auto;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
+.hero h2 { font-size:1.8rem; font-weight:600; color:#1e3a8a;}
 
-.hero h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #1e3a8a;
-}
-
-/* Container */
-.container {
-  max-width: 850px;
-  margin: auto;
-  padding: 15px;
-}
+.container { max-width:850px; margin:auto; padding:15px; }
 
 /* Admin Panel */
-.admin-panel {
-  margin-bottom: 30px;
-  text-align: center;
-  display: none; /* hidden by default */
+.admin-panel { margin-bottom:30px; text-align:center; display:none;}
+.admin-panel textarea, .admin-panel input {
+  width:70%; padding:10px 12px; margin:5px 0; border-radius:12px; border:1px solid #c7d2fe; font-size:1rem;
 }
-
-.admin-panel input, .admin-panel textarea {
-  width: 70%;
-  padding: 10px 12px;
-  margin: 5px 0;
-  border-radius: 12px;
-  border: 1px solid #c7d2fe;
-  font-size: 1rem;
-}
-
 .admin-panel button {
-  padding: 10px 16px;
-  margin-top: 5px;
-  border: none;
-  border-radius: 12px;
-  background: #6366f1;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
+  padding:10px 16px; margin-top:5px; border:none; border-radius:12px; background:#6366f1; color:white; cursor:pointer; font-size:1rem;
 }
+.admin-panel button:hover { background:#4f46e5; }
 
-.admin-panel button:hover {
-  background: #4f46e5;
-}
-
-/* Login Section */
-#adminLogin {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-#adminLogin input {
-  padding: 10px;
-  border-radius: 12px;
-  border: 1px solid #c7d2fe;
-  font-size: 1rem;
-}
-
-#adminLogin button {
-  padding: 10px 16px;
-  margin-left: 5px;
-  border: none;
-  border-radius: 12px;
-  background: #6366f1;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-#adminLogin button:hover {
-  background: #4f46e5;
-}
+/* Admin login */
+#adminLogin { text-align:center; margin-bottom:30px; }
+#adminLogin input { padding:10px; border-radius:12px; border:1px solid #c7d2fe; font-size:1rem; }
+#adminLogin button { padding:10px 16px; margin-left:5px; border:none; border-radius:12px; background:#6366f1; color:white; cursor:pointer; font-size:1rem; }
+#adminLogin button:hover { background:#4f46e5; }
 
 /* Posts */
-.post {
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-  animation: fadeUp 0.5s ease;
-}
+.post { border-radius:20px; padding:20px; margin-bottom:20px; box-shadow:0 15px 30px rgba(0,0,0,0.08);}
+.post p { font-size:1rem; line-height:1.6; }
+.color-1 { background:#e0f2fe; }
+.color-2 { background:#fde68a; }
+.color-3 { background:#ede9fe; }
+.color-4 { background:#dcfce7; }
+.color-5 { background:#ffe4e6; }
 
-.post p {
-  font-size: 1rem;
-  line-height: 1.6;
-}
+.meta { margin-top:15px; display:flex; justify-content:space-between; font-size:0.9rem; color:#374151; }
+.like-btn { background:#111827; color:white; padding:6px 14px; border-radius:20px; cursor:pointer; font-size:0.9rem; }
+.like-btn:hover { background:#000; }
 
-/* Post colors (soft pastels) */
-.color-1 { background: #e0f2fe; } /* blue */
-.color-2 { background: #fde68a; } /* yellow */
-.color-3 { background: #ede9fe; } /* purple */
-.color-4 { background: #dcfce7; } /* green */
-.color-5 { background: #ffe4e6; } /* pink */
+/* Comments */
+.comment-section { margin-top:15px; border-top:1px solid #c7d2fe; padding-top:12px; }
+.comment-box { display:flex; margin-bottom:10px; }
+.comment-box input { flex:1; padding:7px 12px; border-radius:14px; border:1px solid #c7d2fe; font-size:0.95rem; }
+.comment-box button { margin-left:8px; padding:7px 12px; border-radius:14px; border:none; background:#6366f1; color:white; cursor:pointer; font-size:0.9rem;}
+.comment-box button:hover { background:#4f46e5; }
+.comment { background:#f0f9ff; border-radius:14px; padding:6px 10px; margin-top:6px; font-size:0.9rem; }
 
-/* Meta: likes */
-.meta {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: #374151;
-}
-
-.like-btn {
-  background: #111827;
-  color: white;
-  padding: 6px 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.like-btn:hover {
-  background: #000;
-}
-
-/* Comment Section */
-.comment-section {
-  margin-top: 15px;
-  border-top: 1px solid #c7d2fe;
-  padding-top: 12px;
-}
-
-.comment-box {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.comment-box input {
-  flex: 1;
-  padding: 7px 12px;
-  border-radius: 14px;
-  border: 1px solid #c7d2fe;
-  font-size: 0.95rem;
-}
-
-.comment-box button {
-  margin-left: 8px;
-  padding: 7px 12px;
-  border-radius: 14px;
-  border: none;
-  background: #6366f1;
-  color: white;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.comment-box button:hover {
-  background: #4f46e5;
-}
-
-.comment {
-  background: #f0f9ff;
-  border-radius: 14px;
-  padding: 6px 10px;
-  margin-top: 6px;
-  font-size: 0.9rem;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 30px 10px;
-  color: #1e3a8a;
-  font-size: 0.95rem;
-}
-
-/* Animation */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+footer { text-align:center; padding:30px 10px; color:#1e3a8a; font-size:0.95rem; }
 </style>
 </head>
 
@@ -238,13 +90,13 @@ footer {
     <button onclick="checkPassword()">Login</button>
   </div>
 
-  <!-- Admin Panel to add posts -->
+  <!-- Admin Panel -->
   <div class="admin-panel">
     <textarea id="newThought" rows="3" placeholder="Write your reflection here..."></textarea><br>
     <button onclick="addPost()">Add Thought</button>
   </div>
 
-  <!-- Posts container -->
+  <!-- Posts -->
   <div id="posts">
     <div class="post color-1">
       <p>Sometimes the smallest step in the right direction ends up being the biggest step of your life.</p>
@@ -269,7 +121,8 @@ footer {
 </footer>
 
 <script>
-const PASSWORD = "aksh123"; // change to any password you like
+// Set your secret password here
+const PASSWORD = "aksh123";
 
 function checkPassword() {
   const input = document.getElementById("adminPass").value;
@@ -281,35 +134,32 @@ function checkPassword() {
   }
 }
 
+// Likes
 function like(el) {
   const count = el.querySelector("b");
-  count.textContent = Number(count.textContent) + 1;
+  count.textContent = Number(count.textContent)+1;
 }
 
+// Comments
 function addComment(button) {
   const input = button.previousElementSibling;
   const text = input.value.trim();
-  if (!text) return;
-
+  if(!text) return;
   const commentsDiv = button.closest(".comment-section").querySelector(".comments");
   const comment = document.createElement("div");
-  comment.className = "comment";
+  comment.className="comment";
   comment.textContent = text;
   commentsDiv.appendChild(comment);
-
-  input.value = "";
+  input.value="";
 }
 
-// Add post dynamically
+// Add post
 function addPost() {
   const text = document.getElementById("newThought").value.trim();
-  if (!text) return;
-
+  if(!text) return;
   const postsDiv = document.getElementById("posts");
-
   const postDiv = document.createElement("div");
-  postDiv.className = "post color-" + (Math.floor(Math.random()*5)+1);
-
+  postDiv.className="post color-"+(Math.floor(Math.random()*5)+1);
   postDiv.innerHTML = `
     <p>${text}</p>
     <div class="meta">
@@ -324,9 +174,8 @@ function addPost() {
       </div>
     </div>
   `;
-
-  postsDiv.prepend(postDiv); // newest on top
-  document.getElementById("newThought").value = ""; // clear box
+  postsDiv.prepend(postDiv);
+  document.getElementById("newThought").value="";
 }
 </script>
 
