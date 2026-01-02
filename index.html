@@ -3,164 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aksh – Reflections</title>
+<title>Aksh Chat Reflections</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #f6f7f9; /* soft neutral background */
-  color: #2e2e2e;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Centered journal layout */
-.wrapper {
-  max-width: 680px;
-  margin: 60px auto;
+/* Chat container */
+.chat-container {
+  width: 100%;
+  max-width: 420px;
+  height: 85vh;
   background: #ffffff;
-  padding: 50px 40px;
-  border-radius: 14px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.06);
-  animation: fadeIn 1s ease;
+  border-radius: 18px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 /* Header */
-h1 {
-  font-weight: 600;
-  font-size: 2.2rem;
-  margin-bottom: 5px;
-  color: #2f3e46;
-}
-
-.subtitle {
-  font-size: 0.95rem;
-  color: #6c757d;
-  margin-bottom: 40px;
-}
-
-/* Sections */
-.section {
-  margin-bottom: 40px;
-}
-
-.section h2 {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #495057;
-  margin-bottom: 12px;
-}
-
-/* Quote */
-blockquote {
-  margin: 0;
-  padding-left: 16px;
-  border-left: 3px solid #ced4da;
-  font-style: italic;
-  color: #495057;
-}
-
-/* Reflection input */
-input {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid #dee2e6;
-  font-size: 0.95rem;
-}
-
-input:focus {
-  outline: none;
-  border-color: #adb5bd;
-}
-
-/* Button */
-button {
-  margin-top: 12px;
-  padding: 12px 18px;
-  border: none;
-  border-radius: 10px;
-  background: #343a40;
+.chat-header {
+  background: linear-gradient(135deg, #5f7cff, #6a5acd);
   color: white;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background: #212529;
-}
-
-/* Reflections list */
-.reflection {
-  margin-top: 16px;
-  padding-left: 12px;
-  border-left: 2px solid #e9ecef;
-  color: #343a40;
-}
-
-/* Footer */
-footer {
+  padding: 18px;
   text-align: center;
-  margin-top: 60px;
-  font-size: 0.85rem;
-  color: #868e96;
+}
+
+.chat-header h1 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.chat-header p {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin: 4px 0 0;
+}
+
+/* Messages area */
+.chat-box {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background: #f5f7fb;
+}
+
+/* Message bubbles */
+.message {
+  max-width: 75%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  animation: popIn 0.3s ease;
+  font-size: 0.9rem;
+}
+
+/* Bot */
+.bot {
+  background: #e3ebff;
+  color: #2c3e50;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+/* User */
+.user {
+  background: #dcd6ff;
+  color: #2c2c54;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+/* Input area */
+.chat-input {
+  display: flex;
+  padding: 12px;
+  background: white;
+  border-top: 1px solid #eee;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+.chat-input input:focus {
+  outline: none;
+  border-color: #6a5acd;
+}
+
+.chat-input button {
+  margin-left: 8px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: none;
+  background: #6a5acd;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background: #5a4bcf;
 }
 
 /* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
-  <h1>Aksh</h1>
-  <div class="subtitle">A quiet space for thoughts & reflections</div>
-
-  <div class="section">
-    <h2>Quote</h2>
-    <blockquote>
-      “Be gentle with yourself. You’re doing the best you can.”
-    </blockquote>
+<div class="chat-container">
+  <div class="chat-header">
+    <h1>Aksh</h1>
+    <p>Your reflection space</p>
   </div>
 
-  <div class="section">
-    <h2>Reflection</h2>
-    <p>
-      Some days don’t need answers. They only need honesty.
-    </p>
+  <div class="chat-box" id="chatBox">
+    <div class="message bot">
+      Hi 👋 I’m here to listen. What’s on your mind today?
+    </div>
   </div>
 
-  <div class="section">
-    <h2>Write something</h2>
-    <input type="text" id="textInput" placeholder="Type a thought and press add…" />
-    <button onclick="addReflection()">Add</button>
-    <div id="list"></div>
+  <div class="chat-input">
+    <input type="text" id="input" placeholder="Type your thought..." />
+    <button onclick="send()">Send</button>
   </div>
-
-  <footer>
-    © 2026 Aksh
-  </footer>
 </div>
 
 <script>
-function addReflection() {
-  const input = document.getElementById("textInput");
+function send() {
+  const input = document.getElementById("input");
   const text = input.value.trim();
   if (!text) return;
 
-  const div = document.createElement("div");
-  div.className = "reflection";
-  div.textContent = text;
+  const chatBox = document.getElementById("chatBox");
 
-  document.getElementById("list").prepend(div);
+  // User message
+  const userMsg = document.createElement("div");
+  userMsg.className = "message user";
+  userMsg.textContent = text;
+  chatBox.appendChild(userMsg);
+
   input.value = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  // Bot reply
+  setTimeout(() => {
+    const botMsg = document.createElement("div");
+    botMsg.className = "message bot";
+    botMsg.textContent = "Thank you for sharing 🌱";
+    chatBox.appendChild(botMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 600);
 }
 </script>
 
