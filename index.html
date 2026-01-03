@@ -4,11 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aksh – Reflections & Insight</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -36,36 +39,6 @@
       color: #6b7280;
     }
 
-    .hero {
-      max-width: 1100px;
-      margin: 32px auto 0;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 26px 48px rgba(0,0,0,.10);
-      background: linear-gradient(135deg, #ffffff 0%, #f7f9fb 100%);
-      border: 1px solid rgba(210,214,220,.6);
-    }
-
-    .hero img {
-      width: 100%;
-      height: 340px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .hero-text {
-      padding: 22px 28px 26px;
-      text-align: center;
-      background: #ffffff;
-    }
-
-    .hero-text h2 {
-      margin: 0;
-      font-size: 26px;
-      color: #111827;
-      font-weight: 600;
-    }
-
     .section {
       max-width: 880px;
       margin: 32px auto 48px;
@@ -77,87 +50,22 @@
       backdrop-filter: blur(14px) saturate(140%);
       -webkit-backdrop-filter: blur(14px) saturate(140%);
       border-radius: 18px;
-      padding: 22px 22px 18px;
-      box-shadow: 0 22px 40px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.8);
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 22px 40px rgba(0,0,0,.08);
       border: 1px solid rgba(200,205,212,.55);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 28px 46px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.9);
     }
 
     .quote {
       font-size: 18px;
-      color: #111827;
       line-height: 1.6;
+      color: #111827;
     }
 
     .meta {
-      margin: 10px 0 16px;
+      margin-top: 10px;
       font-size: 13px;
       color: #6b7280;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .like-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #f3f4f6;
-      color: #374151;
-      border: 1px solid #d1d5db;
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background .12s ease;
-    }
-
-    .like-btn:hover {
-      background: #e5e7eb;
-    }
-
-    .comment-box {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .comment-box input {
-      flex: 1;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      padding: 10px 14px;
-      outline: none;
-      background: #ffffff;
-    }
-
-    .comment-box input:focus {
-      border-color: #9ca3af;
-      box-shadow: 0 0 0 2px rgba(156,163,175,.25);
-    }
-
-    .comment-btn {
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      padding: 10px 16px;
-      font-weight: 600;
-      cursor: pointer;
-      background: #ffffff;
-      color: #111827;
-      transition: background .12s ease;
-    }
-
-    .comment-btn:hover {
-      background: #f3f4f6;
     }
 
     footer {
@@ -166,23 +74,44 @@
       color: #6b7280;
       font-size: 14px;
     }
+  </style>
+</head>
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 22px;
-      margin: 42px auto 16px;
-      max-width: 1120px;
-      padding: 0 8px;
-    }
+<body>
 
-    .gallery-item {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      background: rgba(255,255,255,.75);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(210,214,220,.6);
-      box-shadow: 0 20px 38px rgba(0,0,0,.10);
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
+  <header>
+    <h1>Aksh</h1>
+    <p class="tagline">Reflections & Insight</p>
+  </header>
+
+  <!-- THOUGHTS SECTION -->
+  <div class="section" id="thoughts"></div>
+
+  <footer>
+    © 2026 Aksh
+  </footer>
+
+  <!-- SCRIPT: LOAD THOUGHTS -->
+  <script>
+    fetch("thoughts.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("thoughts");
+
+        data.reverse().forEach(item => {
+          const card = document.createElement("div");
+          card.className = "card";
+
+          card.innerHTML = `
+            <div class="quote">${item.text}</div>
+            <div class="meta">${item.date}</div>
+          `;
+
+          container.appendChild(card);
+        });
+      })
+      .catch(err => console.error(err));
+  </script>
+
+</body>
+</html>
