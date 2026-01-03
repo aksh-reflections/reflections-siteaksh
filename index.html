@@ -3,40 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aksh - Reflections & Insight</title>
+  <title>Aksh Reflections</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Aksh – Reflections & Insight</h1>
-  <p>Calm thoughts, peaceful mind</p>
-</header>
+  <header>
+    <h1>Aksh Reflections</h1>
+    <p>Quiet thoughts, clear mind</p>
+  </header>
 
-<main id="reflectionContainer">
-  <h2>Reflect. Read. Connect.</h2>
+  <main>
+    <div id="posts"></div>
+  </main>
 
-  <!-- Reflections list -->
-  <div id="reflectionsList">
-    <!-- This will hold reflections -->
-  </div>
-  
-  <!-- Button to open admin form -->
-  <button id="adminBtn">Add Reflection (Admin)</button>
+  <footer>
+    <p>© 2026 Aksh</p>
+  </footer>
 
-  <!-- Admin form (hidden by default) -->
-  <div id="adminForm" class="hidden">
-    <h3>Add New Thought</h3>
-    <textarea id="newThought" placeholder="Write your reflection..."></textarea><br>
-    <button id="saveBtn">Save</button>
-    <button id="cancelBtn">Cancel</button>
-  </div>
-</main>
-
-<footer>
-  <p>© 2026 Aksh</p>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #222;
+}
+
+header {
+  background: #111;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+.post {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 4px solid #111;
+}
+
+.post p {
+  margin: 0 0 8px;
+}
+
+.post small {
+  color: #666;
+}
+fetch("posts.json")
+  .then(response => response.json())
+  .then(posts => {
+    const container = document.getElementById("posts");
+
+    posts.reverse().forEach(post => {
+      const div = document.createElement("div");
+      div.className = "post";
+      div.innerHTML = `
+        <p>${post.text}</p>
+        <small>${post.date}</small>
+      `;
+      container.appendChild(div);
+    });
+  })
+  .catch(err => {
+    console.error("Error loading posts:", err);
+  });
+[
+  {
+    "date": "2026-01-03",
+    "text": "Silence teaches what noise cannot."
+  },
+  {
+    "date": "2026-01-02",
+    "text": "Some thoughts are meant to stay."
+  }
+]
+{
+  "date": "2026-01-04",
+  "text": "Your new thought here."
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #eaeaea;
+  font-size: 14px;
+}
