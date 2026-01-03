@@ -1,99 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aksh Reflections</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aksh – Reflections & Insight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(120% 140% at 20% -10%, #eef0f3 0%, #fafafa 40%, #f1f2f4 100%);
+      color: #0f1115;
+    }
 
-  <header>
-    <h1>Aksh Reflections</h1>
-    <p>Quiet thoughts, clear mind</p>
-  </header>
+    header {
+      text-align: center;
+      padding: 48px 16px 28px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
 
-  <main>
-    <div id="posts"></div>
-  </main>
+    h1 {
+      font-size: 38px;
+      margin: 0 0 6px;
+      color: #111827;
+      letter-spacing: -0.5px;
+      font-weight: 700;
+    }
 
-  <footer>
-    <p>© 2026 Aksh</p>
-  </footer>
+    .tagline {
+      font-weight: 400;
+      color: #6b7280;
+    }
 
-  <script src="script.js"></script>
-</body>
-</html>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  color: #222;
-}
+    .hero {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 26px 48px rgba(0,0,0,.10);
+      background: linear-gradient(135deg, #ffffff 0%, #f7f9fb 100%);
+      border: 1px solid rgba(210,214,220,.6);
+    }
 
-header {
-  background: #111;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
+    .hero img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
 
-main {
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 0 15px;
-}
+    .hero-text {
+      padding: 22px 28px 26px;
+      text-align: center;
+      background: #ffffff;
+    }
 
-.post {
-  background: white;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-left: 4px solid #111;
-}
+    .hero-text h2 {
+      margin: 0;
+      font-size: 26px;
+      color: #111827;
+      font-weight: 600;
+    }
 
-.post p {
-  margin: 0 0 8px;
-}
+    .section {
+      max-width: 880px;
+      margin: 32px auto 48px;
+      padding: 0 16px;
+    }
 
-.post small {
-  color: #666;
-}
-fetch("posts.json")
-  .then(response => response.json())
-  .then(posts => {
-    const container = document.getElementById("posts");
+    .card {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-radius: 18px;
+      padding: 22px 22px 18px;
+      box-shadow: 0 22px 40px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.8);
+      border: 1px solid rgba(200,205,212,.55);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
 
-    posts.reverse().forEach(post => {
-      const div = document.createElement("div");
-      div.className = "post";
-      div.innerHTML = `
-        <p>${post.text}</p>
-        <small>${post.date}</small>
-      `;
-      container.appendChild(div);
-    });
-  })
-  .catch(err => {
-    console.error("Error loading posts:", err);
-  });
-[
-  {
-    "date": "2026-01-03",
-    "text": "Silence teaches what noise cannot."
-  },
-  {
-    "date": "2026-01-02",
-    "text": "Some thoughts are meant to stay."
-  }
-]
-{
-  "date": "2026-01-04",
-  "text": "Your new thought here."
-}
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 28px 46px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.9);
+    }
 
-footer {
-  text-align: center;
-  padding: 15px;
-  background: #eaeaea;
-  font-size: 14px;
-}
+    .quote {
+      font-size: 18px;
+      color: #111827;
+      line-height: 1.6;
+    }
+
+    .meta {
+      margin: 10px 0 16px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .like-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .12s ease;
+    }
+
+    .like-btn:hover {
+      background: #e5e7eb;
+    }
+
+    .comment-box {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .comment-box input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      padding: 10px 14px;
+      outline: none;
+      background: #ffffff;
+    }
+
+    .comment-box input:focus {
+      border-color: #9ca3af;
+      box-shadow: 0 0 0 2px rgba(156,163,175,.25);
+    }
+
+    .comment-btn {
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      padding: 10px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #ffffff;
+      color: #111827;
+      transition: background .12s ease;
+    }
+
+    .comment-btn:hover {
+      background: #f3f4f6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 16px 40px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 22px;
+      margin: 42px auto 16px;
+      max-width: 1120px;
+      padding: 0 8px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(210,214,220,.6);
+      box-shadow: 0 20px 38px rgba(0,0,0,.10);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
