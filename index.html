@@ -1,150 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aksh – Reflections & Insight</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-<style>
-/* Reset & Body */
-* { box-sizing:border-box; margin:0; padding:0; }
-body {
-  font-family:'Roboto', sans-serif;
-  background:#f9fafb;
-  color:#1e293b;
-  line-height:1.6;
-}
-
-/* Header */
-header {
-  text-align:center;
-  padding:50px 20px 20px;
-  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FsbSUyMGJhY2tncm91bmR8ZW58MHx8MHx8&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center/cover;
-  border-radius:0 0 25px 25px;
-}
-header h1 {
-  font-family:'Playfair Display', serif;
-  font-size:3rem;
-  color:white;
-  text-shadow:1px 2px 8px rgba(0,0,0,0.3);
-}
-header p {
-  color:white;
-  margin-top:8px;
-  font-style:italic;
-  text-shadow:1px 2px 8px rgba(0,0,0,0.3);
-}
-
-/* Hero Section */
-.hero {
-  background:linear-gradient(120deg, #c8e6f5, #f9f4ff);
-  border-radius:20px;
-  margin:20px auto;
-  padding:30px;
-  max-width:800px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
-  transition:0.3s;
-}
-.hero h2 {
-  font-family:'Playfair Display', serif;
-  font-size:1.9rem;
-  color:#1e40af;
-}
-
-/* Container */
-.container { max-width:800px; margin:auto; padding:20px; }
-
-/* Admin Panel */
-.admin-panel { text-align:center; margin-bottom:30px; display:none; }
-.admin-panel textarea {
-  width:80%; padding:12px; border-radius:14px; border:1px solid #cbd5e1; font-size:1rem; resize:none;
-}
-.admin-panel button {
-  margin-top:10px;
-  padding:10px 18px;
-  border:none;
-  border-radius:14px;
-  background:#2563eb;
-  color:white;
-  cursor:pointer;
-  font-size:1rem;
-}
-.admin-panel button:hover { background:#1d4ed8; }
-
-/* Posts */
-.post {
-  border-radius:20px;
-  padding:20px;
-  margin-bottom:25px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.05);
-  transition:0.3s;
-  opacity:0;
-  transform:translateY(20px);
-}
-.post.show { opacity:1; transform:translateY(0); transition:0.5s ease; }
-.post p { font-size:1rem; }
-
-/* Pastel colors */
-.color-1 { background:#fce7f3; } /* soft pink */
-.color-2 { background:#e0f2fe; } /* soft blue */
-.color-3 { background:#dcfce7; } /* soft green */
-.color-4 { background:#ede9fe; } /* soft purple */
-.color-5 { background:#fff9c4; } /* soft yellow */
-
-/* Meta & Likes */
-.meta {
-  margin-top:12px;
-  display:flex;
-  justify-content:space-between;
-  font-size:0.9rem;
-  color:#475569;
-}
-.like-btn {
-  background:#1e3a8a;
-  color:white;
-  padding:6px 14px;
-  border-radius:20px;
-  cursor:pointer;
-  font-size:0.9rem;
-}
-.like-btn:hover { background:#1d4ed8; }
-
-/* Comments */
-.comment-section { margin-top:12px; border-top:1px solid #cbd5e1; padding-top:12px; }
-.comment-box { display:flex; margin-bottom:8px; }
-.comment-box input {
-  flex:1;
-  padding:8px 12px;
-  border-radius:16px;
-  border:1px solid #cbd5e1;
-}
-.comment-box button {
-  margin-left:6px;
-  padding:8px 14px;
-  border:none;
-  border-radius:16px;
-  background:#2563eb;
-  color:white;
-  cursor:pointer;
-}
-.comment-box button:hover { background:#1d4ed8; }
-.comment {
-  background:#f0f9ff;
-  border-radius:14px;
-  padding:6px 10px;
-  margin-top:4px;
-  font-size:0.9rem;
-}
-
-/* Footer */
-footer {
-  text-align:center;
-  padding:25px 10px;
-  color:#1e3a8a;
-  font-size:0.95rem;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aksh - Reflections & Insight</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -153,95 +13,30 @@ footer {
   <p>Calm thoughts, peaceful mind</p>
 </header>
 
-<div class="hero">
+<main id="reflectionContainer">
   <h2>Reflect. Read. Connect.</h2>
-</div>
 
-<div class="container">
-
-  <!-- Admin Panel -->
-  <div class="admin-panel" id="adminPanel">
-    <textarea id="newThought" rows="3" placeholder="Write your reflection here..."></textarea><br>
-    <button onclick="addPost()">Add Thought</button>
+  <!-- Reflections list -->
+  <div id="reflectionsList">
+    <!-- This will hold reflections -->
   </div>
+  
+  <!-- Button to open admin form -->
+  <button id="adminBtn">Add Reflection (Admin)</button>
 
-  <!-- Posts -->
-  <div id="posts">
-    <div class="post color-1 show">
-      <p>Sometimes the smallest step in the right direction is the biggest step of your life.</p>
-      <div class="meta">
-        <span>Just shared</span>
-        <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
-      </div>
-      <div class="comment-section">
-        <div class="comments"></div>
-        <div class="comment-box">
-          <input type="text" placeholder="Add a comment">
-          <button onclick="addComment(this)">Comment</button>
-        </div>
-      </div>
-    </div>
+  <!-- Admin form (hidden by default) -->
+  <div id="adminForm" class="hidden">
+    <h3>Add New Thought</h3>
+    <textarea id="newThought" placeholder="Write your reflection..."></textarea><br>
+    <button id="saveBtn">Save</button>
+    <button id="cancelBtn">Cancel</button>
   </div>
-
-</div>
+</main>
 
 <footer>
-  © 2026 Aksh
+  <p>© 2026 Aksh</p>
 </footer>
 
-<script>
-// Show admin panel only if URL contains ?admin=1
-if(window.location.search.includes("admin=1")) {
-  document.getElementById("adminPanel").style.display = "block";
-}
-
-// Like posts
-function like(el) {
-  const count = el.querySelector("b");
-  count.textContent = Number(count.textContent)+1;
-}
-
-// Add comment
-function addComment(button) {
-  const input = button.previousElementSibling;
-  const text = input.value.trim();
-  if(!text) return;
-  const commentsDiv = button.closest(".comment-section").querySelector(".comments");
-  const comment = document.createElement("div");
-  comment.className="comment";
-  comment.textContent = text;
-  commentsDiv.appendChild(comment);
-  input.value="";
-}
-
-// Add post with random pastel color
-function addPost() {
-  const text = document.getElementById("newThought").value.trim();
-  if(!text) return;
-  const postsDiv = document.getElementById("posts");
-  const postDiv = document.createElement("div");
-  const colorNum = Math.floor(Math.random()*5)+1;
-  postDiv.className="post color-"+colorNum;
-  postDiv.innerHTML = `
-    <p>${text}</p>
-    <div class="meta">
-      <span>Just shared</span>
-      <span class="like-btn" onclick="like(this)">❤️ Like <b>0</b></span>
-    </div>
-    <div class="comment-section">
-      <div class="comments"></div>
-      <div class="comment-box">
-        <input type="text" placeholder="Add a comment">
-        <button onclick="addComment(this)">Comment</button>
-      </div>
-    </div>
-  `;
-  postsDiv.prepend(postDiv);
-  // Animate
-  setTimeout(()=>{ postDiv.classList.add("show"); },50);
-  document.getElementById("newThought").value="";
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
